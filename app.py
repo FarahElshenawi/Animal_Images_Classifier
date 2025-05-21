@@ -9,7 +9,7 @@ app = Flask(__name__)
 # Load the trained model
 model = load_model('model/model.h5')
 
-class_names= ['cane', 'cavallo', 'elefante', 'farfalla', 'gallina', 'gatto', 'mucca', 'pecora', 'ragno', 'scoiattolo']
+class_names = ['dog', 'horse', 'elephant', 'butterfly', 'hen', 'cat', 'cow', 'sheep', 'spider', 'squirrel']
 print(f"Class names: {class_names}")
 
 # Image preprocessing function
