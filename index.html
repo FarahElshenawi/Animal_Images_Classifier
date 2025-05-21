@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animal Image Classifier</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+        }
+        .error {
+            color: red;
+        }
+        .prediction {
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Animal Image Classifier</h1>
+        <form method="post" enctype="multipart/form-data">
+            <input type="file" name="image" accept="image/*" required>
+            <br><br>
+            <input type="submit" value="Upload and Predict">
+        </form>
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+        {% if prediction %}
+            <div class="prediction">
+                <p><strong>Predicted Animal:</strong> {{ prediction }}</p>
+                <p><strong>Confidence:</strong> {{ confidence }}</p>
+                <h3>All Predictions:</h3>
+                <table>
+                    <tr>
+                        <th>Class</th>
+                        <th>Confidence (%)</th>
+                    </tr>
+                    {% for pred in all_predictions %}
+                        <tr>
+                            <td>{{ pred.class }}</td>
+                            <td>{{ pred.confidence | round(2) }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
